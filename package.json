@@ -13,7 +13,7 @@
     "passport": "^0.6.0"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.0",
+    "@sap/ux-specification": "^1.102.1",
     "sqlite3": "^5.0.2"
   },
   "engines": {
@@ -23,7 +23,8 @@
     "start": "cds run",
     "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-migrations": "cds watch --open migrations/webapp/index.html?sap-ui-xx-viewCache=false",
-    "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys"
+    "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys",
+    "watch-overwiev": "cds watch --open overwiev/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -52,7 +53,8 @@
   },
   "sapux": [
     "app/risks",
-    "app/migrations"
+    "app/migrations",
+    "app/overwiev"
   ],
   "cds": {
     "requires": {

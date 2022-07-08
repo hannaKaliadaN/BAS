@@ -2,6 +2,7 @@ _schema-version: "3.1"
 ID: cpapp
 description: A simple CAP project.
 version: 1.0.0
+
 modules:
   - name: cpapp-srv
     type: nodejs
@@ -102,7 +103,9 @@ modules:
         - npm install
         - npm run build:cf
       supported-platforms: []
+ 
 resources:
+
   - name: cpapp-destination
     type: org.cloudfoundry.managed-service
     parameters:
@@ -119,11 +122,13 @@ resources:
             existing_destinations_policy: update
       service: destination
       service-plan: lite
+
   - name: cpapp-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
+
   - name: cpapp-db
     type: com.sap.xs.hdi-container
     parameters:
@@ -131,6 +136,7 @@ resources:
       service-plan: hdi-shared
     properties:
       hdi-service-name: ${service-name}
+
   - name: cpapp-uaa
     type: org.cloudfoundry.managed-service
     parameters:
@@ -149,6 +155,7 @@ resources:
       path: ./xs-security.json
       service: xsuaa
       service-plan: application
+
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
