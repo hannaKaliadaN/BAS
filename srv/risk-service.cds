@@ -11,7 +11,7 @@ service RiskService {
             grant : ['*'],
             to    : ['RiskManager']
         }
-    ])                    as projection on my.Risks;
+    ]) as projection on my.Risks;
 
     annotate Risks with @odata.draft.enabled;
 
@@ -24,30 +24,21 @@ service RiskService {
             grant : ['*'],
             to    : ['RiskManager']
         }
-    ])                    as projection on my.Mitigations;
+    ]) as projection on my.Mitigations;
 
     annotate Mitigations with @odata.draft.enabled;
+    entity SalesOrder       as select from my.SalesOrderType;
 
     @readonly
-    entity Books          as
-        select from my.Books {
-            *
-        }
+    entity SalesHistory as select from my.SalesHistoryType
         excluding {
+            createdAt,
             createdBy,
+            modifiedAt,
             modifiedBy
         };
 
-    @readonly
-    entity Orders         as projection on my.Orders;
+    entity SalesPerSupplier as select from my.SalesPerSupplierType;
 
 
-    // Enable Fiori Draft for Orders
-    annotate AdminService.Orders with @odata.draft.enabled;
-    // annotate AdminService.Books with @odata.draft.enabled;
-
-    // Temporary workaround -> cap/issues#3121
-    extend service AdminService with {
-        entity OrderItems as select from my.OrderItems;
-    }
 }

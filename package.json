@@ -24,7 +24,7 @@
     "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-migrations": "cds watch --open migrations/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys",
-    "watch-overwiev": "cds watch --open overwiev/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-overview": "cds watch --open overview/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -54,7 +54,7 @@
   "sapux": [
     "app/risks",
     "app/migrations",
-    "app/overwiev"
+    "app/overview"
   ],
   "cds": {
     "requires": {
