@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^5",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.0",
     "@sap/xssec": "^3.2.13",
     "express": "^4",
     "hdb": "^0.19.0",
@@ -24,7 +25,10 @@
     "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-migrations": "cds watch --open migrations/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys",
-    "watch-overwiev": "cds watch --open overwiev/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-overwiev": "cds watch --open overwiev/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-overview": "cds watch --open overview/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-ovp": "cds watch --open ovp/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -54,7 +58,11 @@
   "sapux": [
     "app/risks",
     "app/migrations",
-    "app/overwiev"
+    "app/overwiev",
+    "app/overview",
+    "app/overview",
+    "app/project1",
+    "app/ovp"
   ],
   "cds": {
     "requires": {

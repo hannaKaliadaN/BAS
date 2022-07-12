@@ -1,7 +1,7 @@
 {
   "_version": "1.40.0",
   "sap.app": {
-    "id": "ov.overwiev",
+    "id": "overview",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap-ux/fiori-elements-writer:ovp",
       "version": "0.3.6",
-      "toolsId": "b4acca9a-8909-48c5-8a58-db0988119ac1"
+      "toolsId": "d4cf459f-0d7c-4326-9e47-19532ff4bcb8"
     },
     "dataSources": {
       "mainService": {
@@ -59,7 +59,9 @@
         "sap.ui.core": {},
         "sap.ushell": {},
         "sap.fe.templates": {},
-        "sap.ovp": {},
+        "sap.ovp": {
+          "minVersion": "1.32.0"
+        },
         "sap.ui.rta": {},
         "sap.ui.layout": {}
       }
@@ -72,12 +74,13 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ov.overwiev.i18n.i18n"
+          "bundleName": "overview.i18n.i18n"
         }
       },
-      "mainModel": {
+      "mainService": {
         "dataSource": "mainService",
         "preload": true,
+
         "settings": {
           "synchronizationMode": "None",
           "operationMode": "Server",
@@ -100,26 +103,59 @@
     }
   },
   "sap.ovp": {
-    "globalFilterModel": "mainModel",
-    "globalFilterEntityType": "Books",
+    "globalFilterModel": "mainService",
+    "globalFilterEntityType": "Risks",
     "containerLayout": "resizable",
-    "enableLiveFilter": true,
-    "considerAnalyticalParameters": false,
+    "enableLiveFilter": false,
     "cards": {
-      "card00": {
-        "model": "mainModel",
+      "list": {
+        "model": "mainService",
         "template": "sap.ovp.cards.list",
         "settings": {
-          "title": "{{card00_title}}",
-          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#book",
-          "entitySet": "Books"
+          "title": "ssss",
+
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#list",
+          "entitySet": "Risks"
+        }
+      },
+      "donutCard": {
+        "model": "mainService",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Donut Chart",
+          "entitySet": "SalesPerSupplier",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#donut",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#GrossAmountInCompanyCurrency",
+          "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+          "chartProperties": {
+            "plotArea": {
+              "dataLabel": {
+                "type": "percentage"
+              }
+            }
+          }
+        }
+      },
+      "lineCard": {
+        "model": "mainService",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Line Chart",
+          "entitySet": "SalesHistory",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Line",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#GrossAmountInCompanyCurrency",
+          "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification"
         }
       }
-    },
-    "globalFilterControlType": "MacroFilterBar"
+    }
   },
   "sap.fiori": {
     "registrationIds": [],
     "archeType": "analytical"
+  },
+  "sap.ui.generic.app": {
+    "settings": {}
   }
 }

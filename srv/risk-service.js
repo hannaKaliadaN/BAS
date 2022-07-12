@@ -1,9 +1,11 @@
 
 const cds = require('@sap/cds')
-
+const proxy = require("@sap/cds-odata-v2-adapter-proxy");
+cds.on("bootstrap", app => app.use(proxy()));
 /**
  * Implementation for Risk Management service defined in ./risk-service.cds
  */
+
 module.exports = cds.service.impl(async function() {
     this.after('READ', 'Risks', risksData => {
         const risks = Array.isArray(risksData) ? risksData : [risksData];
@@ -16,3 +18,5 @@ module.exports = cds.service.impl(async function() {
         });
     });
 });
+
+

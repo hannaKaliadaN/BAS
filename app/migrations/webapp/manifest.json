@@ -113,16 +113,12 @@
                 {
                     "pattern": "",
                     "name": "worklist",
-                    "target": [
-                        "worklist"
-                    ]
+                    "target": "worklist"
                 },
                 {
                     "pattern": "Mitigations/{objectId}",
                     "name": "object",
-                    "target": [
-                        "object"
-                    ]
+                    "target": "object"
                 }
             ],
             "targets": {
