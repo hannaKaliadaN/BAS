@@ -90,29 +90,16 @@ annotate RiskService.Risks with {
 		}
 	);
 }
-annotate RiskService.SalesOrder with @(UI : {
-    SelectionFields  : [
-        salesOrder,
-        customerCompanyName,
-        numberOfItems
-    ],
-    SelectionVariant : {
-        $Type         : 'UI.SelectionVariantType',
-        SelectOptions : [{
-            $Type        : 'UI.SelectOptionType',
-            PropertyName : localCurrency,
-        }],
-    },
-});
+
 
 annotate  RiskService.SalesOrder with {
-//  modifiedAt @UI.Hidden;
-//  modifiedBy @UI.Hidden;
-//  createdAt @UI.Hidden;
-//  createdBy @UI.Hidden ;
+ modifiedAt @UI.Hidden;
+ modifiedBy @UI.Hidden;
+ createdAt @UI.Hidden;
+ createdBy @UI.Hidden ;
  };
 
-//Donut Chart
+// Donut Chart
 annotate RiskService.SalesPerSupplier with @(UI : {
     Chart #donut                            : {
         $Type               : 'UI.ChartDefinitionType',
@@ -134,7 +121,7 @@ annotate RiskService.SalesPerSupplier with @(UI : {
     },
     PresentationVariant #donutPreVar        : {
         $Type             : 'UI.PresentationVariantType',
-        Visualizations    : ['@UI.Chart#donut'],
+        Visualizations    : ['@UI.Chart'],
         MaxItems          : 3,
         IncludeGrandTotal : true,
         SortOrder         : [{
@@ -165,6 +152,7 @@ annotate RiskService.SalesPerSupplier with @(UI : {
     Identification                          : [{
         $Type : 'UI.DataField',
         Value : grossAmountInCompanyCurrency
+
     }]
 });
 
@@ -181,7 +169,7 @@ annotate  RiskService.SalesHistory with {
  creationMonth_Text @title : 'Month' @Common.QuickInfo : 'Month Long text';
  referenceAmount @title : 'Amount' ; 
  };
-//Line Chart
+// //Line Chart
 annotate RiskService.SalesHistory with @(
     UI.Chart #Line                             : {
         $Type               : 'UI.ChartDefinitionType',

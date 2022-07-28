@@ -13,23 +13,270 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
-            <Annotations Target="RiskService.SalesOrder">
+            <Annotations Target="RiskService.Risks">
+                <Annotation Term="UI.Chart" Qualifier="line">
+                    <Record>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line" />
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure">
+                                        <PropertyPath>criticality</PropertyPath>
+                                    </PropertyValue>
 
-                <Annotation Term="UI.LineItem" Qualifier="List">
+                                    <PropertyValue EnumMember="UI.ChartMeasureRoleType/Axis1" Property="Role"/>
+                                </Record>
+
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension">
+                                        <PropertyPath>title</PropertyPath>
+                                    </PropertyValue>
+                                    <PropertyValue EnumMember="UI.ChartDimensionRoleType/Category" Property="Role"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="line">
+                    <Record Type="com.sap.vocabularies.UI.v1.DataPointType">
+                        <PropertyValue Path="criticality" Property="Value"/>
+                      
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record Type="com.sap.vocabularies.UI.v1.CriticalityCalculationType">
+                                <PropertyValue EnumMember="UI.ImprovementDirectionType/Maximize" Property="ImprovementDirection"/>
+                                <PropertyValue Int="3" Property="ToleranceRangeLowValue"/>
+                                <PropertyValue Int="10" Property="DeviationRangeLowValue"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="line">
+                    <Record>
+                        <!-- <PropertyValue Property="SortOrder">
+                <Collection>
+                    <Record >
+                        <PropertyValue Bool="true" Property="Descending"/>
+                        <PropertyValue Property="Property">
+                            <PropertyPath>supplierName</PropertyPath>
+                        </PropertyValue>
+                    </Record>
+                </Collection>
+            </PropertyValue> -->
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#line</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="RiskService.SalesHistory"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.LineItem" Qualifier="listSalesHistory">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="{@i18n>id}"/>
-                            <PropertyValue Property="Value" Path="ID"/>
+                            <PropertyValue Property="Label" String="Creation Month"/>
+                            <PropertyValue Property="Value" Path="creationMonth_Text"/>
                             <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="{@i18n>supplierName}"/>
-                            <PropertyValue Property="Value" Path="supplierName"/>
+                            <PropertyValue Property="Label" String="Revenue"/>
+                            <PropertyValue Property="Value" Path="grossAmountInCompanyCurrency"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="companyCurrency"/>
                             <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
                         </Record>
                     </Collection>
                 </Annotation>
-                
+
+                <Annotation Term="UI.Chart" Qualifier="donut">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Description" String="Donut Chart"/>
+
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="grossAmountInCompanyCurrency"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="creationMonth_Text"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="donut">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#donut</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+
+
+
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="donut">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" Path="grossAmountInCompanyCurrency"/>
+                        <PropertyValue Property="Title" String="Revenue"/>
+
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <Annotations Target="RiskService.SalesPerSupplier"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.LineItem" Qualifier="listSalesPerSupplier">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="supplierName"/>
+                            <PropertyValue Property="Value" Path="supplierName"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="quantity"/>
+                            <PropertyValue Property="Value" Path="quantity"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataFieldForAnnotation">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#grossAmountInCompanyCurrency" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+
+                <Annotation Term="UI.DataPoint" Qualifier="grossAmountInCompanyCurrency">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Description" Path="supplier" />
+                        <PropertyValue Property="Value" Path="grossAmountInCompanyCurrency" />
+                    </Record>
+                </Annotation>
+
+
+                <!-- <Annotation Term="UI.DataPoint" Qualifier="GrossAmountInCompanyCurrency">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" Path="grossAmountInCompanyCurrency"/>
+                        <PropertyValue Property="Title" String="Revenue"/>
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record Type="UI.CriticalityCalculationType">
+                                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+                                <PropertyValue Property="DeviationRangeHighValue" Int="1000000"/>
+                                <PropertyValue Property="DeviationRangeLowValue" Int="3000000"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TrendCalculation">
+                            <Record Type="UI.TrendCalculationType">
+                                <PropertyValue Property="ReferenceValue" Int="1000"/>
+                                <PropertyValue Property="UpDifference" Decimal="10"/>
+                                <PropertyValue Property="StrongUpDifference" Decimal="100"/>
+                                <PropertyValue Property="DownDifference" Decimal="-10"/>
+                                <PropertyValue Property="StrongDownDifference" Decimal="-100"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation> -->
+
+
+
+                <Annotation Term="UI.Chart" Qualifier="line">
+                    <Record>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line" />
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure">
+                                        <PropertyPath>netUnitPriceInCompanyCurrency</PropertyPath>
+                                    </PropertyValue>
+
+                                    <PropertyValue EnumMember="UI.ChartMeasureRoleType/Axis1" Property="Role"/>
+                                </Record>
+
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension">
+                                        <PropertyPath>supplierName</PropertyPath>
+                                    </PropertyValue>
+                                    <PropertyValue EnumMember="UI.ChartDimensionRoleType/Category" Property="Role"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="line">
+                    <Record Type="com.sap.vocabularies.UI.v1.DataPointType">
+                        <PropertyValue Path="grossAmountInCompanyCurrency" Property="Value"/>
+                        <PropertyValue Property="ValueFormat">
+                            <Record Type="com.sap.vocabularies.UI.v1.NumberFormat">
+                                <PropertyValue Decimal="1" Property="ScaleFactor"/>
+                                <PropertyValue Int="1" Property="NumberOfFractionalDigits"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record Type="com.sap.vocabularies.UI.v1.CriticalityCalculationType">
+                                <PropertyValue EnumMember="UI.ImprovementDirectionType/Maximize" Property="ImprovementDirection"/>
+                                <PropertyValue Int="3" Property="ToleranceRangeLowValue"/>
+                                <PropertyValue Int="10" Property="DeviationRangeLowValue"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="line">
+                    <Record>
+                        <!-- <PropertyValue Property="SortOrder">
+							<Collection>
+								<Record >
+									<PropertyValue Bool="true" Property="Descending"/>
+									<PropertyValue Property="Property">
+										<PropertyPath>supplierName</PropertyPath>
+									</PropertyValue>
+								</Record>
+							</Collection>
+						</PropertyValue> -->
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#line</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+
+                    </Record>
+                </Annotation>
+                <!-- <Annotation Term="UI.SelectionVariant" Qualifier="line">
+					<Record>
+						<PropertyValue Property="SelectOptions">
+							<Collection>
+								<Record Type="UI.SelectOptionType">
+									<PropertyValue Property="PropertyName">
+										<PropertyPath>netUnitPriceInCompanyCurrency</PropertyPath>
+									</PropertyValue>
+									
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>  -->
+
             </Annotations>
         </Schema>
     </edmx:DataServices>

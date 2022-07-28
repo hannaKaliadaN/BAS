@@ -1,161 +1,200 @@
 {
-  "_version": "1.40.0",
-  "sap.app": {
-    "id": "overview",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap-ux/fiori-elements-writer:ovp",
-      "version": "0.3.6",
-      "toolsId": "d4cf459f-0d7c-4326-9e47-19532ff4bcb8"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/service/risk/",
-        "type": "OData",
-        "settings": {
-          "annotations": ["annotation"],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "4.0"
-        }
-      },
-      "annotation": {
-        "type": "ODataAnnotation",
-        "uri": "annotations/annotation.xml",
-        "settings": {
-          "localUri": "annotations/annotation.xml"
-        }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.102.1",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.ushell": {},
-        "sap.fe.templates": {},
-        "sap.ovp": {
-          "minVersion": "1.32.0"
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "overview",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
         },
-        "sap.ui.rta": {},
-        "sap.ui.layout": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "overview.i18n.i18n"
-        }
-      },
-      "mainService": {
-        "dataSource": "mainService",
-        "preload": true,
-
-        "settings": {
-          "synchronizationMode": "None",
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
-      },
-      "@i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "uri": "i18n/i18n.properties"
-      }
-    },
-    "resources": {
-      "css": []
-    },
-    "routing": {
-      "config": {},
-      "routes": [],
-      "targets": {}
-    }
-  },
-  "sap.ovp": {
-    "globalFilterModel": "mainService",
-    "globalFilterEntityType": "Risks",
-    "containerLayout": "resizable",
-    "enableLiveFilter": false,
-    "cards": {
-      "list": {
-        "model": "mainService",
-        "template": "sap.ovp.cards.list",
-        "settings": {
-          "title": "ssss",
-
-          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#list",
-          "entitySet": "Risks"
-        }
-      },
-      "donutCard": {
-        "model": "mainService",
-        "template": "sap.ovp.cards.charts.analytical",
-        "settings": {
-          "title": "Donut Chart",
-          "entitySet": "SalesPerSupplier",
-          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#donut",
-          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant",
-          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#GrossAmountInCompanyCurrency",
-          "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
-          "chartProperties": {
-            "plotArea": {
-              "dataLabel": {
-                "type": "percentage"
-              }
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap-ux/fiori-elements-writer:ovp",
+            "version": "0.3.6",
+            "toolsId": "d4cf459f-0d7c-4326-9e47-19532ff4bcb8"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "Overview-display": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Overview",
+                    "action": "display"
+                }
             }
-          }
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/service/risk/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
         }
-      },
-      "lineCard": {
-        "model": "mainService",
-        "template": "sap.ovp.cards.charts.analytical",
-        "settings": {
-          "title": "Line Chart",
-          "entitySet": "SalesHistory",
-          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Line",
-          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant",
-          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#GrossAmountInCompanyCurrency",
-          "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification"
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
         }
-      }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.ovp": {
+                    "minVersion": "1.32.0"
+                },
+                "sap.ui.rta": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "overview.i18n.i18n"
+                }
+            },
+            "mainService": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        }
+    },
+    "sap.ovp": {
+        "globalFilterModel": "mainService",
+        "globalFilterEntityType": "Risks",
+        "containerLayout": "resizable",
+        "enableLiveFilter": false,
+        "cards": {
+            "lineCard1": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Line chart",
+                    "entitySet": "Risks",
+                    "category": "Risks",
+                    "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#line",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#line",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#line",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#line"
+                }
+            },
+            "lineCard": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Line chart",
+                    "entitySet": "SalesPerSupplier",
+                    "category": "SalesPerSupplier",
+                    "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#line",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#line",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#line",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#line"
+                }
+            },
+            "donutCard": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Donut Chart",
+                    "entitySet": "SalesHistory",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#donut",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#donut",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#donut",
+                    "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#donut",
+                    "plotArea": {
+                        "dataLabel": {
+                            "type": "percentage"
+                        }
+                    }
+                }
+            },
+            "table": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.v4.table",
+                "settings": {
+                    "title": "Sales History",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#listSalesHistory",
+                    "entitySet": "SalesHistory"
+                }
+            },
+            "list3": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.v4.list",
+                "settings": {
+                    "title": "Suppliers Sales",
+                    "listFlavor": "bar",
+                    "listType": "condensed",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#listSalesPerSupplier",
+                    "entitySet": "SalesPerSupplier"
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    },
+    "sap.ui.generic.app": {
+        "settings": {}
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "cpapp.service"
     }
-  },
-  "sap.fiori": {
-    "registrationIds": [],
-    "archeType": "analytical"
-  },
-  "sap.ui.generic.app": {
-    "settings": {}
-  }
 }

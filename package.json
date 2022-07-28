@@ -1,81 +1,77 @@
 {
-  "name": "cpapp",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^5",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.0",
-    "@sap/xssec": "^3.2.13",
-    "express": "^4",
-    "hdb": "^0.19.0",
-    "passport": "^0.6.0"
-  },
-  "devDependencies": {
-    "@sap/ux-specification": "^1.102.1",
-    "sqlite3": "^5.0.2"
-  },
-  "engines": {
-    "node": "^16"
-  },
-  "scripts": {
-    "start": "cds run",
-    "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-migrations": "cds watch --open migrations/webapp/index.html?sap-ui-xx-viewCache=false",
-    "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys",
-    "watch-overwiev": "cds watch --open overwiev/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-overview": "cds watch --open overview/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-ovp": "cds watch --open ovp/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
+    "name": "cpapp",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^5",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.3",
+        "@sap/hdi-deploy": "^4.4.1",
+        "@sap/logging": "^6.1.3",
+        "@sap/xssec": "^3.2.13",
+        "compression": "^1.7.4",
+        "express": "^4",
+        "hdb": "^0.19.0",
+        "passport": "^0.6.0"
     },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
+    "devDependencies": {
+        "@sap/ux-specification": "^1.102.2",
+        "sqlite3": "^5.0.2"
     },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
+    "engines": {
+        "node": "^16"
+    },
+    "scripts": {
+        "start": "cds run",
+        "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-migrations": "cds watch --open migrations/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys",
+        "watch-overview": "cds watch --open overview/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "sapux": [
+        "app/risks",
+        "app/mitigations",
+        "app/overview"
+    ],
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "uaa": {
+                "kind": "xsuaa",
+                "credentials": {}
+            }
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        }
     }
-  },
-  "sapux": [
-    "app/risks",
-    "app/migrations",
-    "app/overwiev",
-    "app/overview",
-    "app/overview",
-    "app/project1",
-    "app/ovp"
-  ],
-  "cds": {
-    "requires": {
-      "db": {
-        "kind": "sql"
-      },
-      "uaa": {
-        "kind": "xsuaa",
-        "credentials": {}
-      }
-    },
-    "hana": {
-      "deploy-format": "hdbtable"
-    }
-  }
 }

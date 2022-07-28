@@ -27,11 +27,29 @@ service RiskService {
     ])                      as projection on my.Mitigations;
 
     annotate Mitigations with @odata.draft.enabled;
-    entity SalesOrder       as select from my.SalesOrderType;
+    
+    entity SalesOrder  @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['RiskViewer']
+        },
+        {
+            grant : ['*'],
+            to    : ['RiskManager']
+        }
+    ])     as select from my.SalesOrder;
 
     @readonly
-    entity SalesHistory     as
-        select from my.SalesHistoryType
+    entity SalesHistory @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['RiskViewer']
+        },
+        {
+            grant : ['*'],
+            to    : ['RiskManager']
+        }
+    ])    as select from my.SalesHistory
         excluding {
             createdAt,
             createdBy,
@@ -39,5 +57,16 @@ service RiskService {
             modifiedBy
         };
 
-    entity SalesPerSupplier as select from my.SalesPerSupplierType;
-}
+    entity SalesPerSupplier @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['RiskViewer']
+        },
+        {
+            grant : ['*'],
+            to    : ['RiskManager']
+        }
+    ]) as select from my.SalesPerSupplier;
+
+
+ }

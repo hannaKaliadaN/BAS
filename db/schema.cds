@@ -25,7 +25,7 @@ entity Mitigations : managed {
                       on risks.miti = $self;
 }
 
-entity SalesOrderType : managed
+entity SalesOrder : managed
 {
     key salesOrder : String(5) @title: 'Sales Order ID';
     customerCompanyName : String(40) @title : 'Company Name';
@@ -34,7 +34,7 @@ entity SalesOrderType : managed
     numberOfItems : String(60) @title : 'Number of Items';
 }
 
-entity SalesPerSupplierType : managed
+entity SalesPerSupplier : managed
 {
     key ID : UUID @(Core.Computed:true) @title: 'Supplier';
     supplier : String(10) @title : 'Business Partner ID';
@@ -48,7 +48,7 @@ entity SalesPerSupplierType : managed
     quantityUnitName : String(10) @Common.Label : 'Measuremt unit text' @Common.QuickInfo : 'Unit of Measurement Text (Maximum 10 Characters)'
 }
 
-entity SalesHistoryType : managed
+entity SalesHistory : managed
 {
     key ID : UUID @(Core.Computed:true);
     creationMonthAsDate : DateTime;
